@@ -51,7 +51,7 @@ export const NuggetCard: React.FC<NuggetCardProps> = ({
           <Text style={styles.bookTitle}>{bookTitle}</Text>
           <Text style={styles.author}>{author}</Text>
           <View style={styles.progressContainer}>
-            <ProgressBar progress={progress} height={2.82} />
+            <ProgressBar progress={progress} height={2.82} color={Colors.white} />
           </View>
           <Text style={styles.progressText}>{progress}% Complete</Text>
         </View>
@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
     marginBottom: Layout.spacing.md,
   },
   quoteText: {
-    fontSize: 33,
+    fontSize: 28,
     color: Colors.white,
     fontFamily: 'Roslindale-DeckNarrowRegular',
-    letterSpacing: -0.99, // -3% of 33
-    lineHeight: 33,
+    letterSpacing: -0.84, // -3% of 28
+    lineHeight: 30,
     marginBottom: Layout.spacing.xl,
   },
   bookInfo: {
@@ -122,13 +122,13 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   coverContainer: {
-    width: 48,
-    height: 48,
+    width: 60,
+    height: 60,
     borderRadius: Layout.radius.sm,
-    overflow: 'hidden',
     marginLeft: Layout.spacing.md,
-    borderWidth: 30,
+    borderWidth: 2,
     borderColor: 'rgba(255, 255, 255, 0.3)', // White with 30% opacity
+    overflow: 'hidden',
   },
   coverImage: {
     width: '100%',

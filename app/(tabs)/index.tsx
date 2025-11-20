@@ -105,12 +105,12 @@ const styles = StyleSheet.create({
   greetingSection: {
     alignItems: 'center',
     paddingHorizontal: Layout.spacing.base,
-    marginBottom: 8, // 8px spacing
+    marginBottom: 16, // Increased spacing
   },
   date: {
     fontSize: Typography.sizes.sm,
     color: Colors.textDark,
-    marginBottom: 8, // 8px spacing
+    marginBottom: 12, // Increased spacing
   },
   greeting: {
     fontSize: Typography.sizes['5xl'],
@@ -128,16 +128,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8, // 8px spacing before nugget card
+    marginBottom: 20, // Increased spacing before nugget card
     gap: Layout.spacing.sm,
   },
   seeAllButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 8, // Increased gap
   },
   streakNumber: {
-    fontSize: Typography.sizes.lg,
+    fontSize: Typography.sizes.base, // Reduced from lg to base
     fontWeight: Typography.weights.semibold,
     color: Colors.white,
   },
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
     paddingRight: Layout.spacing.base,
   },
   sectionTitle: {
-    fontSize: Typography.sizes.xl,
+    fontSize: Typography.sizes.lg, // Reduced from xl to lg
     fontWeight: Typography.weights.semibold,
-    color: Colors.white,
+    color: '#A9A9A9',
   },
   seeAllText: {
     fontSize: Typography.sizes.base,
-    color: Colors.textMuted,
+    color: '#A9A9A9',
   },
   learningCardsContainer: {
     paddingRight: Layout.spacing.base,
