@@ -1,37 +1,84 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { Colors, Layout, Typography } from '../../constants';
+import { Avatar } from '../../components/ui/Avatar';
+import { BellIcon, FlameIcon } from '../../components/icons';
+import { NuggetCard } from '../../components/nuggets/NuggetCard';
+import { ContinueLearningCard } from '../../components/learning/ContinueLearningCard';
 
 export default function HomeScreen() {
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Today's Nugget</Text>
-          <Text style={styles.date}>{new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</Text>
+          <Avatar name="Savage" />
+          <TouchableOpacity>
+            <BellIcon size={24} color={Colors.white} />
+          </TouchableOpacity>
         </View>
 
-        {/* Streak Counter Placeholder */}
+        {/* Greeting Section */}
+        <View style={styles.greetingSection}>
+          <Text style={styles.date}>{currentDate}</Text>
+          <Text style={styles.greeting}>Good Morning,</Text>
+          <Text style={styles.greetingName}>Savage!</Text>
+        </View>
+
+        {/* Streak Counter */}
         <View style={styles.streakContainer}>
-          <Text style={styles.streakNumber}>0</Text>
-          <Text style={styles.streakLabel}>Day Streak</Text>
+          <FlameIcon size={19.5} />
+          <Text style={styles.streakNumber}>47</Text>
         </View>
 
-        {/* Daily Nugget Card Placeholder */}
-        <View style={styles.nuggetCard}>
-          <Text style={styles.nuggetTitle}>Your first nugget will appear here</Text>
-          <Text style={styles.nuggetContent}>
-            Upload your content to get started! Go to the Library tab to add books, articles, or videos you want to learn from.
-          </Text>
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>Getting Started</Text>
+        {/* Daily Nugget Card */}
+        <NuggetCard
+          quote="I'm always so intrigued when I listen to people talk about things they're passionate about. It could be anything: football, a passion project, their job, a color..."
+          bookTitle="The Art of Storytelling"
+          author="Paul Schredd"
+          progress={11}
+          coverImage="https://picsum.photos/200/300"
+          onMenuPress={() => console.log('Menu pressed')}
+        />
+
+        {/* Continue Learning Section */}
+        <View style={styles.continueLearning}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Continue Learning</Text>
+            <TouchableOpacity>
+              <Text style={styles.seeAllText}>See all &gt;</Text>
+            </TouchableOpacity>
           </View>
-        </View>
 
-        {/* Continue Learning Section Placeholder */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Continue Learning</Text>
-          <Text style={styles.placeholderText}>No active content yet</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.learningCardsContainer}
+          >
+            <ContinueLearningCard
+              title="The Art of Storytelling"
+              status="Active"
+              progress={11}
+              imageUri="https://picsum.photos/seed/book1/400/600"
+            />
+            <ContinueLearningCard
+              title="The Art of Storytelling"
+              status="Active"
+              progress={11}
+              imageUri="https://picsum.photos/seed/book2/400/600"
+            />
+          </ScrollView>
         </View>
       </ScrollView>
     </View>
@@ -41,85 +88,74 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111827', // Dark background
+    backgroundColor: Colors.black,
   },
   scrollContent: {
-    padding: 20,
+    paddingBottom: Layout.spacing['3xl'],
   },
   header: {
-    marginBottom: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: Layout.spacing.base,
+    paddingTop: Layout.spacing['5xl'],
+    paddingBottom: Layout.spacing.lg,
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    marginBottom: 4,
+  greetingSection: {
+    alignItems: 'center',
+    paddingHorizontal: Layout.spacing.base,
+    marginBottom: Layout.spacing.lg,
   },
   date: {
-    fontSize: 16,
-    color: '#9CA3AF',
+    fontSize: Typography.sizes.sm,
+    color: Colors.textDark,
+    marginBottom: Layout.spacing.xs,
+  },
+  greeting: {
+    fontSize: Typography.sizes['5xl'],
+    fontFamily: Typography.fonts.serif,
+    color: Colors.white,
+    lineHeight: Typography.sizes['5xl'] * Typography.lineHeights.tight,
+  },
+  greetingName: {
+    fontSize: Typography.sizes['5xl'],
+    fontFamily: Typography.fonts.serif,
+    color: Colors.white,
+    lineHeight: Typography.sizes['5xl'] * Typography.lineHeights.tight,
   },
   streakContainer: {
-    backgroundColor: '#1F2937',
-    borderRadius: 16,
-    padding: 24,
+    flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 24,
-    borderWidth: 2,
-    borderColor: '#FF6B35', // Orange brand
+    justifyContent: 'center',
+    marginBottom: Layout.spacing.xl,
+    gap: Layout.spacing.sm,
   },
   streakNumber: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: '#FF6B35',
+    fontSize: Typography.sizes.lg,
+    fontWeight: Typography.weights.semibold,
+    color: Colors.white,
   },
-  streakLabel: {
-    fontSize: 18,
-    color: '#9CA3AF',
-    marginTop: 4,
+  continueLearning: {
+    marginTop: Layout.spacing.xl,
+    paddingLeft: Layout.spacing.base,
   },
-  nuggetCard: {
-    backgroundColor: '#1F2937',
-    borderRadius: 16,
-    padding: 20,
-    marginBottom: 24,
-  },
-  nuggetTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 12,
-  },
-  nuggetContent: {
-    fontSize: 16,
-    color: '#D1D5DB',
-    lineHeight: 24,
-    marginBottom: 16,
-  },
-  badge: {
-    backgroundColor: '#FF6B35',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
-  },
-  badgeText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-  section: {
-    marginBottom: 24,
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Layout.spacing.base,
+    paddingRight: Layout.spacing.base,
   },
   sectionTitle: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 12,
+    fontSize: Typography.sizes.xl,
+    fontWeight: Typography.weights.semibold,
+    color: Colors.white,
   },
-  placeholderText: {
-    fontSize: 16,
-    color: '#6B7280',
-    fontStyle: 'italic',
+  seeAllText: {
+    fontSize: Typography.sizes.base,
+    color: Colors.textMuted,
+  },
+  learningCardsContainer: {
+    paddingRight: Layout.spacing.base,
   },
 });

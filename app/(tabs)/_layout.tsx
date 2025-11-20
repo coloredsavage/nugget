@@ -1,28 +1,29 @@
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { Colors, Layout } from '../../constants';
+import { HomeIcon, LibraryIcon, SearchIcon, MoreIcon, AddIcon } from '../../components/icons';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#FF6B35', // Orange brand color
-        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarActiveTintColor: Colors.textLight,
+        tabBarInactiveTintColor: '#535256',
         tabBarStyle: {
-          backgroundColor: '#1F2937', // Dark background
-          borderTopColor: '#374151',
+          backgroundColor: Colors.black,
+          borderTopColor: Colors.black,
+          height: Layout.dimensions.tabBarHeight,
+          paddingBottom: 8,
+          paddingTop: 8,
         },
-        headerStyle: {
-          backgroundColor: '#1F2937',
-        },
-        headerTintColor: '#FFFFFF',
+        headerShown: false,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <HomeIcon size={28} color={focused ? Colors.textLight : '#535256'} />
           ),
         }}
       />
@@ -30,26 +31,26 @@ export default function TabLayout() {
         name="library"
         options={{
           title: 'Library',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="library" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <LibraryIcon size={28} color={focused ? Colors.textLight : '#535256'} />
           ),
         }}
       />
       <Tabs.Screen
         name="discover"
         options={{
-          title: 'Discover',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="compass" size={size} color={color} />
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+            <AddIcon size={44} />
           ),
         }}
       />
       <Tabs.Screen
         name="share"
         options={{
-          title: 'Share',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="share-social" size={size} color={color} />
+          title: 'Discover',
+          tabBarIcon: ({ color, focused }) => (
+            <SearchIcon size={28} color={focused ? Colors.textLight : '#535256'} />
           ),
         }}
       />
@@ -57,8 +58,8 @@ export default function TabLayout() {
         name="more"
         options={{
           title: 'More',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ellipsis-horizontal" size={size} color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <MoreIcon size={28} color={focused ? Colors.textLight : '#535256'} />
           ),
         }}
       />
