@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { StatusBar } from 'expo-status-bar';
 import { Colors, Layout, Typography } from '../../constants';
 import { Avatar } from '../../components/ui/Avatar';
-import { BellIcon, FlameIcon } from '../../components/icons';
+import { BellIcon, FlameIcon, ArrowIcon } from '../../components/icons';
 import { NuggetCard } from '../../components/nuggets/NuggetCard';
 import { ContinueLearningCard } from '../../components/learning/ContinueLearningCard';
 
@@ -56,8 +56,9 @@ export default function HomeScreen() {
         <View style={styles.continueLearning}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Continue Learning</Text>
-            <TouchableOpacity>
-              <Text style={styles.seeAllText}>See all &gt;</Text>
+            <TouchableOpacity style={styles.seeAllButton}>
+              <Text style={styles.seeAllText}>See all</Text>
+              <ArrowIcon size={6} color="#A9A9A9" />
             </TouchableOpacity>
           </View>
 
@@ -104,12 +105,12 @@ const styles = StyleSheet.create({
   greetingSection: {
     alignItems: 'center',
     paddingHorizontal: Layout.spacing.base,
-    marginBottom: Layout.spacing.lg,
+    marginBottom: 8, // 8px spacing
   },
   date: {
     fontSize: Typography.sizes.sm,
     color: Colors.textDark,
-    marginBottom: Layout.spacing.xs,
+    marginBottom: 8, // 8px spacing
   },
   greeting: {
     fontSize: Typography.sizes['5xl'],
@@ -127,8 +128,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: Layout.spacing.xl,
+    marginBottom: 8, // 8px spacing before nugget card
     gap: Layout.spacing.sm,
+  },
+  seeAllButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   streakNumber: {
     fontSize: Typography.sizes.lg,

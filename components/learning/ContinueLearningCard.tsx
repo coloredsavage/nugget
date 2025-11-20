@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     borderRadius: Layout.radius.lg,
     overflow: 'hidden',
     marginBottom: Layout.spacing.md,
+    borderWidth: 15,
+    borderColor: 'rgba(8, 6, 6, 0.15)', // #080606 with 15% opacity
   },
   image: {
     width: '100%',

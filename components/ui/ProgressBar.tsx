@@ -13,7 +13,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   progress,
   height = Layout.dimensions.progressBarHeight,
   color = Colors.primary,
-  backgroundColor = 'rgba(255, 255, 255, 0.3)',
+  backgroundColor = 'rgba(20, 20, 20, 0.5)', // #141414 with 50% opacity
 }) => {
   const clampedProgress = Math.max(0, Math.min(100, progress));
 

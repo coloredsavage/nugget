@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, Layout, Typography } from '../../constants';
 import { ProgressBar } from '../ui/ProgressBar';
-import { ThreeDotsIcon } from '../icons';
+import { ThreeDotsIcon, QuoteIcon } from '../icons';
 
 interface NuggetCardProps {
   quote: string;
@@ -29,20 +29,25 @@ export const NuggetCard: React.FC<NuggetCardProps> = ({
       end={{ x: 0, y: 1 }}
       style={styles.card}
     >
-      {/* Three Dots Menu */}
+      {/* Three Dots Menu with 50% opacity */}
       <TouchableOpacity style={styles.menuButton} onPress={onMenuPress}>
-        <ThreeDotsIcon size={20} color={Colors.white} />
+        <View style={{ opacity: 0.5 }}>
+          <ThreeDotsIcon size={20} color={Colors.white} />
+        </View>
       </TouchableOpacity>
 
-      {/* Quote Mark */}
-      <Text style={styles.quoteMark}>\u201C</Text>
+      {/* Quote Icon */}
+      <View style={styles.quoteIconContainer}>
+        <QuoteIcon size={21} />
+      </View>
 
-      {/* Quote Text */}
+      {/* Quote Text - Roslindale Deck Narrow Regular, 33px, -3% letter spacing, 33 line height */}
       <Text style={styles.quoteText}>{quote}</Text>
 
       {/* Book Info Section */}
       <View style={styles.bookInfo}>
         <View style={styles.bookDetails}>
+          {/* Book Title with 60% opacity */}
           <Text style={styles.bookTitle}>{bookTitle}</Text>
           <Text style={styles.author}>{author}</Text>
           <View style={styles.progressContainer}>
@@ -51,7 +56,7 @@ export const NuggetCard: React.FC<NuggetCardProps> = ({
           <Text style={styles.progressText}>{progress}% Complete</Text>
         </View>
 
-        {/* Book Cover Thumbnail */}
+        {/* Book Cover Thumbnail with 30px white border at 30% opacity */}
         {coverImage && (
           <View style={styles.coverContainer}>
             <Image source={{ uri: coverImage }} style={styles.coverImage} />
@@ -76,19 +81,15 @@ const styles = StyleSheet.create({
     padding: Layout.spacing.sm,
     zIndex: 10,
   },
-  quoteMark: {
-    fontSize: 64,
-    color: Colors.white,
-    opacity: 0.9,
-    fontFamily: Typography.fonts.serif,
-    lineHeight: 48,
-    marginBottom: -20,
+  quoteIconContainer: {
+    marginBottom: Layout.spacing.md,
   },
   quoteText: {
-    fontSize: Typography.sizes['2xl'],
+    fontSize: 33,
     color: Colors.white,
-    fontFamily: Typography.fonts.serif,
-    lineHeight: Typography.sizes['2xl'] * Typography.lineHeights.normal,
+    fontFamily: 'Roslindale-DeckNarrowRegular',
+    letterSpacing: -0.99, // -3% of 33
+    lineHeight: 33,
     marginBottom: Layout.spacing.xl,
   },
   bookInfo: {
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     fontSize: Typography.sizes.md,
     fontWeight: Typography.weights.semibold,
     color: Colors.white,
+    opacity: 0.6, // 60% opacity
     marginBottom: 4,
   },
   author: {
@@ -125,6 +127,8 @@ const styles = StyleSheet.create({
     borderRadius: Layout.radius.sm,
     overflow: 'hidden',
     marginLeft: Layout.spacing.md,
+    borderWidth: 30,
+    borderColor: 'rgba(255, 255, 255, 0.3)', // White with 30% opacity
   },
   coverImage: {
     width: '100%',

@@ -9,6 +9,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     'Roslindale-DisplayCondensedRegular': require('../assets/fonts/Roslindale-DisplayCondensedRegular-Testing.ttf'),
+    'Roslindale-DeckNarrowRegular': require('../assets/fonts/Roslindale-DeckNarrowRegular-Testing.ttf'),
   });
 
   useEffect(() => {

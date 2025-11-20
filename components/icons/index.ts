@@ -11,3 +11,5 @@ export * from './MoreIcon';
 export * from './AddIcon';
 export * from './BellIcon';
 export * from './ThreeDotsIcon';
+export * from './QuoteIcon';
+export * from './ArrowIcon';
